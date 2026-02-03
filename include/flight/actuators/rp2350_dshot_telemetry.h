@@ -17,7 +17,8 @@ class Rp2350DshotTelemetryReceiver final : public ITelemetryReceiver {
     uint8_t samples_per_bit = 10;
   };
 
-  explicit Rp2350DshotTelemetryReceiver(const Config& config = {});
+  Rp2350DshotTelemetryReceiver();
+  explicit Rp2350DshotTelemetryReceiver(const Config& config);
 
   bool Initialize() override;
   std::optional<DshotTelemetryFrame> Read() override;

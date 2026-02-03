@@ -46,6 +46,8 @@ The default UDP telemetry packet includes:
 
 This loop provides fast feedback without the overhead of full MAVLink integration.
 
+The live plot includes actual rates, setpoint rates, and tracking error to help tune rate loops.
+
 ## Python Receiver
 
 Use the helper script to inspect packets on your workstation:

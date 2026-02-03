@@ -33,6 +33,7 @@ STRUCT_FMT = (
     "H"   # esc_raw
     "B"   # esc_crc_ok
     "B"   # esc_present
+    "B"   # armed
 )
 
 STRUCT_SIZE = struct.calcsize(STRUCT_FMT)
@@ -187,11 +188,13 @@ def main() -> None:
             esc_raw = fields[35]
             esc_crc_ok = fields[36]
             esc_present = fields[37]
+            armed = fields[38]
 
             print(
-                "ts=%d q=%s rates=%s vel=%s set_vel=%s set_rates=%s thrust=%.3f motors=%s esc=%s"
+                "ts=%d armed=%d q=%s rates=%s vel=%s set_vel=%s set_rates=%s thrust=%.3f motors=%s esc=%s"
                 % (
                     timestamp_us,
+                    armed,
                     tuple(round(v, 3) for v in orientation),
                     tuple(round(v, 3) for v in angular_velocity),
                     tuple(round(v, 3) for v in velocity),

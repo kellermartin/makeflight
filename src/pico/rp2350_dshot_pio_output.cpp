@@ -26,6 +26,8 @@ inline float Clamp(float value, float min_value, float max_value) {
 
 }  // namespace
 
+Rp2350DshotPioOutput::Rp2350DshotPioOutput() = default;
+
 Rp2350DshotPioOutput::Rp2350DshotPioOutput(const Config& config) : config_(config) {}
 
 bool Rp2350DshotPioOutput::Initialize() {

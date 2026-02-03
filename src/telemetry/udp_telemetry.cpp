@@ -38,6 +38,7 @@ struct UdpTelemetryPacket {
   uint16_t esc_raw = 0;
   uint8_t esc_crc_ok = 0;
   uint8_t esc_present = 0;
+  uint8_t armed = 0;
 };
 #pragma pack(pop)
 
@@ -87,6 +88,7 @@ void UdpTelemetrySender::Publish(const TelemetrySnapshot& snapshot) {
     packet.esc_raw = snapshot.esc_telemetry->raw;
     packet.esc_crc_ok = snapshot.esc_telemetry->crc_ok ? 1 : 0;
   }
+  packet.armed = snapshot.armed ? 1 : 0;
 
   sockaddr_in addr{};
   addr.sin_family = AF_INET;

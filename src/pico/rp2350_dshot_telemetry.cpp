@@ -13,6 +13,8 @@
 
 namespace flight::actuators {
 
+Rp2350DshotTelemetryReceiver::Rp2350DshotTelemetryReceiver() = default;
+
 Rp2350DshotTelemetryReceiver::Rp2350DshotTelemetryReceiver(const Config& config)
     : config_(config) {}
 

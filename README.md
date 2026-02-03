@@ -1,4 +1,4 @@
-# makeflight
+# MAKeFlight
 
 Modular C++17 flight controller framework focused on clean interfaces, portability, and composable subsystems. The design starts with RP2350 support and a 4‑thruster ROV reference vehicle, while keeping HAL boundaries clear for additional MCU targets.
 

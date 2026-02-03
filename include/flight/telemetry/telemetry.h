@@ -16,6 +16,7 @@ struct TelemetrySnapshot {
   controllers::ControlSetpoint setpoint{};
   controllers::ControlOutput output{};
   std::optional<actuators::DshotTelemetryFrame> esc_telemetry;
+  bool armed = false;
 };
 
 /** @brief Telemetry sink interface. */

@@ -21,10 +21,17 @@ class Rov4Vehicle final : public IVehicle {
   /** @brief Initialize vehicle dependencies. */
   bool Initialize() override;
   /** @brief Run control update. */
-  void Update(float dt_s) override;
+ void Update(float dt_s) override;
 
  private:
+  enum class ArmState : uint8_t { kDisarmed = 0, kArmed = 1 };
+
+  void UpdateArming(const receiver::CommandFrame& frame, float dt_s);
+
   VehicleDependencies deps_;
+  ArmState arm_state_ = ArmState::kDisarmed;
+  float arm_hold_s_ = 0.0f;
+  float disarm_hold_s_ = 0.0f;
 };
 
 }  // namespace flight::vehicle

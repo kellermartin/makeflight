@@ -28,7 +28,8 @@ class Rp2350DshotPioOutput final : public IActuatorOutput {
     uint16_t max_throttle = 2047;
   };
 
-  explicit Rp2350DshotPioOutput(const Config& config = {});
+  Rp2350DshotPioOutput();
+  explicit Rp2350DshotPioOutput(const Config& config);
 
   bool Initialize() override;
   bool Write(const ActuatorCommand* commands, uint8_t count) override;
