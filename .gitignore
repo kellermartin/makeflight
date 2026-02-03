@@ -1,4 +1,5 @@
 /build/
+/build-pico/
 /site/
 /docs/site/
 *.o

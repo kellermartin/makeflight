@@ -13,6 +13,10 @@ RUN apt-get update \
     cmake \
     cppcheck \
     ccache \
+    gcc-arm-none-eabi \
+    binutils-arm-none-eabi \
+    libnewlib-arm-none-eabi \
+    libstdc++-arm-none-eabi-newlib \
     gdb \
     lldb \
     git \
@@ -20,13 +24,6 @@ RUN apt-get update \
     pkg-config \
     valgrind \
   && rm -rf /var/lib/apt/lists/*
-
-# Create a non-root user for a seamless host UID/GID mapping.
-ARG USERNAME=vscode
-ARG USER_UID=1000
-ARG USER_GID=1000
-RUN groupadd --gid ${USER_GID} ${USERNAME} \
-  && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME}
 
 ENV CC=gcc
 ENV CXX=g++

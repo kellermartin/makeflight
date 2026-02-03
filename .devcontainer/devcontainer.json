@@ -4,13 +4,23 @@
     "dockerfile": "../Dockerfile",
     "context": ".."
   },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "${localEnv:USER}",
+      "uid": "${localEnv:UID}",
+      "gid": "${localEnv:GID}",
+      "installZsh": "false",
+      "nonFreePackages": "false"
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-vscode.cpptools",
         "ms-vscode.cmake-tools",
         "twxs.cmake",
-        "llvm-vs-code-extensions.vscode-clangd"
+        "llvm-vs-code-extensions.vscode-clangd",
+        "openai.chatgpt"
       ],
       "settings": {
         "cmake.generator": "Ninja",
@@ -24,8 +34,8 @@
       }
     }
   },
-  "remoteUser": "vscode",
-  "containerUser": "vscode",
+  "remoteUser": "${localEnv:USER}",
+  "containerUser": "${localEnv:USER}",
   "updateRemoteUserUID": true,
-  "postCreateCommand": "cmake --version && g++ --version && ninja --version"
+  "postCreateCommand": "cmake --version && g++ --version && ninja --version && arm-none-eabi-gcc --version"
 }

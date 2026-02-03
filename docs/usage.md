@@ -6,6 +6,25 @@ cmake -S . -B build
 cmake --build build
 ```
 
+## Build (RP2350 Pico SDK)
+```bash
+export PICO_SDK_PATH=/path/to/pico-sdk
+cmake -S . -B build-pico -DBUILD_PICO=ON
+cmake --build build-pico
+```
+
+Or let CMake fetch the SDK:
+```bash
+cmake -S . -B build-pico -DBUILD_PICO=ON -DFETCH_PICO_SDK=ON -DPICO_SDK_TAG=2.0.0
+cmake --build build-pico
+```
+
+Flash `build-pico/flight_pico.uf2` via USB BOOTSEL.
+
+Default I2C pins in `include/flight/hal/pico_config.h`:
+- `SDA = GPIO4`
+- `SCL = GPIO5`
+
 ## Run Demo
 ```bash
 ./build/flight_demo
