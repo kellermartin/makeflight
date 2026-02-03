@@ -1,0 +1,31 @@
+{
+  "name": "makeflight-cpp17",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake",
+        "llvm-vs-code-extensions.vscode-clangd"
+      ],
+      "settings": {
+        "cmake.generator": "Ninja",
+        "cmake.configureOnOpen": true,
+        "cmake.useCMakePresets": "never",
+        "clangd.arguments": [
+          "--background-index",
+          "--clang-tidy"
+        ],
+        "C_Cpp.default.cppStandard": "c++17"
+      }
+    }
+  },
+  "remoteUser": "vscode",
+  "containerUser": "vscode",
+  "updateRemoteUserUID": true,
+  "postCreateCommand": "cmake --version && g++ --version && ninja --version"
+}

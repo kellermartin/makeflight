@@ -1,0 +1,27 @@
+site_name: makeflight
+site_description: Modular C++17 flight controller framework
+site_url: https://example.com
+repo_url: https://example.com
+repo_name: makeflight
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+
+nav:
+  - Overview: index.md
+  - Architecture: architecture.md
+  - Usage: usage.md
+  - ROV: rov.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
