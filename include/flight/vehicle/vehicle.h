@@ -3,10 +3,12 @@
 #include <memory>
 
 #include "flight/actuators/actuators.h"
+#include "flight/actuators/telemetry.h"
 #include "flight/controllers/controllers.h"
 #include "flight/estimators/estimators.h"
 #include "flight/receiver/receiver.h"
 #include "flight/scheduler/scheduler.h"
+#include "flight/telemetry/telemetry.h"
 
 namespace flight::vehicle {
 
@@ -34,6 +36,8 @@ struct VehicleDependencies {
   estimators::IStateEstimator* estimator = nullptr;
   controllers::IController* controller = nullptr;
   actuators::IActuatorOutput* actuators = nullptr;
+  actuators::ITelemetryReceiver* telemetry = nullptr;
+  telemetry::ITelemetrySink* telemetry_sink = nullptr;
   receiver::ICommandReceiver* receiver = nullptr;
 };
 

@@ -15,6 +15,16 @@ nav:
   - Architecture: architecture.md
   - Usage: usage.md
   - ROV: rov.md
+  - Advanced:
+    - Overview: advanced/index.md
+    - EKF Fusion: advanced/ekf-fusion.md
+    - Motor Modeling: advanced/motor-modeling.md
+    - System Identification: advanced/system-identification.md
+    - Control Allocation: advanced/control-allocation.md
+    - Real-Time Scheduling: advanced/real-time-scheduling.md
+    - Framework Coupling: advanced/framework-coupling.md
+    - RP2350 DShot: advanced/rp2350-dshot.md
+    - Telemetry & Debugging: advanced/telemetry-debugging.md
 
 markdown_extensions:
   - admonition

@@ -4,6 +4,7 @@
 
 #include "flight/core/types.h"
 #include "flight/sensors/sensors.h"
+#include "flight/actuators/telemetry.h"
 
 namespace flight::estimators {
 
@@ -13,6 +14,7 @@ struct EstimatorInput {
   std::optional<sensors::MagSample> mag;
   std::optional<sensors::BaroSample> baro;
   std::optional<sensors::GpsSample> gps;
+  std::optional<actuators::DshotTelemetryFrame> esc_telemetry;
 };
 
 /** @brief State estimator output. */

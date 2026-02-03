@@ -40,6 +40,7 @@ add_library(flightcore
   src/receiver/udp_receiver.cpp
   src/scheduler/scheduler.cpp
   src/sensors/mpu6050.cpp
+  src/telemetry/udp_telemetry.cpp
   src/vehicle/vehicle.cpp
   src/vehicle/rov4_vehicle.cpp
 )
@@ -64,11 +65,17 @@ if (BUILD_PICO)
 
   add_executable(flight_pico
     src/pico/main_pico.cpp
+    src/pico/rp2350_dshot_pio_output.cpp
+    src/pico/rp2350_dshot_telemetry.cpp
+    src/pico/dshot_tx.pio
+    src/pico/dshot_telem_rx.pio
     src/hal/rp2350_pico_hal.cpp
     src/sensors/mpu6050.cpp
   )
   target_include_directories(flight_pico PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-  target_link_libraries(flight_pico pico_stdlib hardware_i2c)
+  target_link_libraries(flight_pico pico_stdlib hardware_i2c hardware_pio hardware_dma)
+  pico_generate_pio_header(flight_pico ${CMAKE_CURRENT_SOURCE_DIR}/src/pico/dshot_tx.pio)
+  pico_generate_pio_header(flight_pico ${CMAKE_CURRENT_SOURCE_DIR}/src/pico/dshot_telem_rx.pio)
 
   pico_enable_stdio_usb(flight_pico 1)
   pico_enable_stdio_uart(flight_pico 0)
@@ -100,7 +107,9 @@ if (BUILD_TESTS)
     tests/test_rov_controller.cpp
     tests/test_biheli_pwm.cpp
     tests/test_config.cpp
+    tests/test_dshot.cpp
     tests/test_mpu6050.cpp
+    tests/test_madgwick.cpp
     tests/test_udp_receiver.cpp
   )
   target_link_libraries(flight_tests PRIVATE flightcore doctest::doctest)

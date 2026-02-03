@@ -1,0 +1,4 @@
+.program dshot_telem_rx
+.wrap_target
+  in pins, 1
+.wrap

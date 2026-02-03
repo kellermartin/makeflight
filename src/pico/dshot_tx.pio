@@ -1,0 +1,4 @@
+.program dshot_tx
+.wrap_target
+  out pins, 1
+.wrap

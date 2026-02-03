@@ -16,6 +16,9 @@ Modular C++17 flight controller framework focused on clean interfaces, portabili
 - `Doxyfile`: API doc config.
 - `CMakeLists.txt`: Build and docs targets.
 
+## Documentation
+- [Flight Controller Concepts Guide](docs/flight-controller-guide.md)
+
 ## Build (Host)
 ```bash
 cmake -S . -B build

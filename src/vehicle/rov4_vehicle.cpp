@@ -4,6 +4,7 @@
  */
 
 #include "flight/vehicle/rov4_vehicle.h"
+#include "flight/telemetry/telemetry.h"
 
 namespace flight::vehicle {
 
@@ -35,6 +36,9 @@ void Rov4Vehicle::Update(float dt_s) {
   }
 
   estimators::EstimatorInput input;
+  if (deps_.telemetry) {
+    input.esc_telemetry = deps_.telemetry->Read();
+  }
   const auto estimate = deps_.estimator->Update(input);
 
   controllers::ControlSetpoint setpoint{};
@@ -55,6 +59,16 @@ void Rov4Vehicle::Update(float dt_s) {
     commands[i].value = output.motors[i];
   }
   deps_.actuators->Write(commands, 4);
+
+  if (deps_.telemetry_sink) {
+    telemetry::TelemetrySnapshot snapshot{};
+    snapshot.timestamp_us = estimate.timestamp_us;
+    snapshot.pose = estimate.pose;
+    snapshot.setpoint = setpoint;
+    snapshot.output = output;
+    snapshot.esc_telemetry = input.esc_telemetry;
+    deps_.telemetry_sink->Publish(snapshot);
+  }
 }
 
 }  // namespace flight::vehicle
